@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Nodes } from "./tabs/Nodes";
+import { Elements } from "./tabs/Elements";
+import GraphComponent from "./component/GraphComponent";
 
-function App() {
+const Tabs = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = [
+    { name: "Nodes", content: <Nodes /> },
+    { name: "Elements", content: <Elements /> },
+    { name: "Loads", content: "Coming Soon!" },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Structural Analysis using Stiffness Matrix Method</h1>
+      <span>Developed by Deepesh Chhetri</span>
+      <hr />
+      <div className="tabs-container">
+        <div className="tabs-header">
+          {tabs.map((tab, index) => (
+            <button
+              key={index}
+              className={activeTab === index ? "tab active" : "tab"}
+              onClick={() => setActiveTab(index)}
+            >
+              <strong>{tab.name}</strong>
+            </button>
+          ))}
+        </div>
+        <div className="tabs-content">{tabs[activeTab].content}</div>
+      </div>
+      <GraphComponent />
     </div>
   );
-}
+};
 
-export default App;
+export default Tabs;
