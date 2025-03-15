@@ -12,18 +12,18 @@ const GraphComponent = () => {
     if (!svgRef.current || !nodes.length) return;
 
     const svg = d3.select(svgRef.current);
-    const width = 1200;
-    const aspectRatio = 0.4; // Keep aspect ratio as 1 for proportional scaling
-    const height = width * aspectRatio; // Ensure height is equal to width for proportional scaling
+    const width = 1200; // Set width to 100%
+    const aspectRatio = 0.5;
+    const height = width * aspectRatio;
     const padding = 60;
 
     svg.attr("width", width).attr("height", height);
 
     // Scales based on the node data
     const xMin = d3.min(nodes, (d) => d.x) || 0;
-    const xMax = d3.max(nodes, (d) => d.x) || 1;
+    const xMax = d3.max(nodes, (d) => d.x) || 0;
     const yMin = d3.min(nodes, (d) => d.y) || 0;
-    const yMax = d3.max(nodes, (d) => d.y) || 1;
+    const yMax = d3.max(nodes, (d) => d.y) || 0;
 
     const xScale = d3
       .scaleLinear()
@@ -174,6 +174,17 @@ const GraphComponent = () => {
             break;
           }
         }
+
+        graphGroup
+          .append("text")
+          .attr("x", x + 40)
+          .attr("y", y + 30)
+          .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "middle")
+          .attr("fill", "red")
+          .attr("font-size", "32px")
+          .attr("font-weight", "bold")
+          .text(`${node.id}`);
       }
     });
 

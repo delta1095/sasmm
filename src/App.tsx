@@ -3,6 +3,7 @@ import "./App.css";
 import { Nodes } from "./tabs/Nodes";
 import { Elements } from "./tabs/Elements";
 import GraphComponent from "./component/GraphComponent";
+import Result from "./component/Result";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -32,7 +33,9 @@ const Tabs = () => {
         </div>
         <div className="tabs-content">{tabs[activeTab].content}</div>
       </div>
+
       <GraphComponent />
+      <Result />
     </div>
   );
 };

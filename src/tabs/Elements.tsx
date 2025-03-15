@@ -43,7 +43,11 @@ export const Elements = () => {
             >
               <option value="" disabled></option>
               {nodes.map((node) => (
-                <option key={node.id} value={node.id}>
+                <option
+                  key={node.id}
+                  value={node.id}
+                  disabled={node.id === newElement.node2}
+                >
                   Node: {node.id} (x: {node.x}, y: {node.y}, z: {node.z})
                 </option>
               ))}
@@ -60,7 +64,11 @@ export const Elements = () => {
             >
               <option value="" disabled></option>
               {nodes.map((node) => (
-                <option key={node.id} value={node.id}>
+                <option
+                  key={node.id}
+                  value={node.id}
+                  disabled={node.id === newElement.node1}
+                >
                   Node: {node.id} (x: {node.x}, y: {node.y}, z: {node.z})
                 </option>
               ))}
